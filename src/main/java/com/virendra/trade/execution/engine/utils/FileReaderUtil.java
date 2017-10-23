@@ -43,6 +43,7 @@ public class FileReaderUtil {
            // lines.close();
 
         } catch (IOException e) {
+            System.out.println("Exception occurred while reading file: "+e);
             e.printStackTrace();
         }
 

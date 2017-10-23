@@ -15,16 +15,12 @@ public class TradeExecutor {
         List<Double> amountList =  trades.stream().
                 filter(trade -> filterByTradeIndicatorAndInstructionDate(trade, indicator, settledDate))
                 .map(trade -> calculateTotalAmountForTrade(trade)).collect(Collectors.toList());
-       // amountList.forEach(System.out::println);
         return amountList.stream().reduce(0.0, Double::sum);
     }
 
     public List<Trade> getFirstRankedTrade(List<Trade> trades, Indicator indicator) {
 
-        List<Trade> rankedTrades = trades.stream().filter(trade -> trade.getIndicator().equals(indicator)).sorted(comparator.reversed()).collect(Collectors.toList());
-               // .max(comp)
-               // .get();
-        return rankedTrades;
+        return trades.stream().filter(trade -> trade.getIndicator().equals(indicator)).sorted(comparator.reversed()).collect(Collectors.toList());
 
     }
 
