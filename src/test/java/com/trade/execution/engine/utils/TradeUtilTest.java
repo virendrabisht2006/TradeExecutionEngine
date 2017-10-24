@@ -1,8 +1,7 @@
-package com.virendra.trade.execution.engine.utils;
+package com.trade.execution.engine.utils;
 
-import com.virendra.trade.execution.engine.TradeConstant;
-import com.virendra.trade.execution.engine.model.Indicator;
-import com.virendra.trade.execution.engine.model.Trade;
+import com.trade.execution.engine.model.Indicator;
+import com.trade.execution.engine.model.Trade;
 import org.junit.Before;
 import org.junit.Test;
 

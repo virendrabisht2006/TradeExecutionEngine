@@ -1,8 +1,8 @@
-package com.virendra.trade.execution.engine.utils;
+package com.trade.execution.engine.utils;
 
-import com.virendra.trade.execution.engine.TradeConstant;
-import com.virendra.trade.execution.engine.model.Indicator;
-import com.virendra.trade.execution.engine.model.Trade;
+import com.trade.execution.engine.model.Indicator;
+import com.trade.execution.engine.model.Trade;
+import org.apache.log4j.Logger;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -14,18 +14,24 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Stream;
 
-public class FileReaderUtil {
+public class TradeFileReaderUtil {
 
     private static final String FILE_INSTRUCTION ="trade-instruction.csv";
 
     private static final String DELIMETER =",";
+
+    private final static Logger logger = Logger.getLogger(TradeFileReaderUtil.class);
+
+    private TradeFileReaderUtil() {
+
+    }
 
     public static List<Trade> readFile(String path) {
         String file = path;
         List<Trade> trades = new ArrayList<>();
 
         if(null == path || path.isEmpty()) {
-            file = String.valueOf(FileReaderUtil.class.getClassLoader().getResource(FILE_INSTRUCTION).getFile());
+            file = String.valueOf(TradeFileReaderUtil.class.getClassLoader().getResource(FILE_INSTRUCTION).getFile());
         }
 
         try (Stream<String> lines = Files.lines(Paths.get(file)).skip(1)){
@@ -43,7 +49,7 @@ public class FileReaderUtil {
            // lines.close();
 
         } catch (IOException e) {
-            System.out.println("Exception occurred while reading file: "+e);
+            logger.error("Exception occurred while reading file: ", e);
             e.printStackTrace();
         }
 
@@ -56,7 +62,7 @@ public class FileReaderUtil {
            return new SimpleDateFormat(TradeConstant.DATE_FORMAT).parse(strDate);
         }
         catch(ParseException e) {
-            System.out.println("Exception in parsing date: "+ e);
+            logger.error("Exception in parsing date: ", e);
             throw new RuntimeException(e);
         }
 

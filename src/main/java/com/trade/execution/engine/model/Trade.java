@@ -1,7 +1,7 @@
-package com.virendra.trade.execution.engine.model;
+package com.trade.execution.engine.model;
 
 
-import com.virendra.trade.execution.engine.utils.TradeUtil;
+import com.trade.execution.engine.utils.TradeUtil;
 
 import java.util.Date;
 
@@ -31,6 +31,38 @@ public class Trade {
         this.instructionDate = instructionDate;
         this.units = units;
         this.pricePerUnit = pricePerUnit;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Trade trade = (Trade) o;
+
+        if (Double.compare(trade.agreedFx, agreedFx) != 0) return false;
+        if (units != trade.units) return false;
+        if (Double.compare(trade.pricePerUnit, pricePerUnit) != 0) return false;
+        if (entity != null ? !entity.equals(trade.entity) : trade.entity != null) return false;
+        if (indicator != trade.indicator) return false;
+        if (currency != null ? !currency.equals(trade.currency) : trade.currency != null) return false;
+        return instructionDate != null ? instructionDate.equals(trade.instructionDate) : trade.instructionDate == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result;
+        long temp;
+        result = entity != null ? entity.hashCode() : 0;
+        result = 31 * result + (indicator != null ? indicator.hashCode() : 0);
+        temp = Double.doubleToLongBits(agreedFx);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        result = 31 * result + (currency != null ? currency.hashCode() : 0);
+        result = 31 * result + (instructionDate != null ? instructionDate.hashCode() : 0);
+        result = 31 * result + (int) (units ^ (units >>> 32));
+        temp = Double.doubleToLongBits(pricePerUnit);
+        result = 31 * result + (int) (temp ^ (temp >>> 32));
+        return result;
     }
 
     public String getEntity() {

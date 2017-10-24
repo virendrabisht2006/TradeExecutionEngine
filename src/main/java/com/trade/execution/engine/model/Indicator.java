@@ -1,4 +1,4 @@
-package com.virendra.trade.execution.engine.model;
+package com.trade.execution.engine.model;
 
 
 public enum Indicator {

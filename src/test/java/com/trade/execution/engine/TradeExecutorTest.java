@@ -1,8 +1,11 @@
-package com.virendra.trade.execution.engine;
+package com.trade.execution.engine;
 
-import com.virendra.trade.execution.engine.utils.FileReaderUtil;
-import com.virendra.trade.execution.engine.model.Indicator;
-import com.virendra.trade.execution.engine.model.Trade;
+import com.trade.execution.engine.model.Indicator;
+import com.trade.execution.engine.model.Trade;
+import com.trade.execution.engine.service.TradeExecutor;
+import com.trade.execution.engine.service.TradeRepository;
+import com.trade.execution.engine.utils.TradeConstant;
+import com.trade.execution.engine.utils.TradeFileReaderUtil;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -13,7 +16,7 @@ import java.util.List;
 
 public class TradeExecutorTest {
 
-    private TradeExecutor tradeExecutor;
+    private TradeRepository tradeRepository;
 
     private List<Trade> trades;
 
@@ -24,8 +27,8 @@ public class TradeExecutorTest {
 
     @Before
     public void init() {
-        tradeExecutor = new TradeExecutor();
-        trades = FileReaderUtil.readFile(null);
+        tradeRepository = new TradeExecutor();
+        trades = TradeFileReaderUtil.readFile(null);
         dateFormat = new SimpleDateFormat(TradeConstant.DATE_FORMAT);
     }
 
@@ -35,7 +38,7 @@ public class TradeExecutorTest {
 
         String date = "04 Jan 2016";
 
-        double actualIncomingAmount = tradeExecutor.totalTradeAmountPerDay(trades, dateFormat.parse(date), Indicator.S);
+        double actualIncomingAmount = tradeRepository.totalTradeAmountPerDay(trades, dateFormat.parse(date), Indicator.S);
         assert (actualIncomingAmount == expectedIncomingAmount);
     }
 
@@ -45,14 +48,14 @@ public class TradeExecutorTest {
 
         String date = "04 Jan 2016";
 
-        double actualOutgoingAmount = tradeExecutor.totalTradeAmountPerDay(trades, dateFormat.parse(date), Indicator.B);
+        double actualOutgoingAmount = tradeRepository.totalTradeAmountPerDay(trades, dateFormat.parse(date), Indicator.B);
         assert (actualOutgoingAmount == expectedOutgoingAmount);
     }
 
     @Test
     public void shouldGetFirstRankedIncomingEntity() throws Exception {
         String expectedEntity = "jpmc";
-        List<Trade> rankedTrades = tradeExecutor.getFirstRankedTrade(trades, Indicator.S);
+        List<Trade> rankedTrades = tradeRepository.getFirstRankedTrade(trades, Indicator.S);
         assert (rankedTrades.size() == 3);
         assert (rankedTrades.get(0).getEntity()).equals(expectedEntity);
     }
@@ -60,7 +63,7 @@ public class TradeExecutorTest {
     @Test
     public void shouldGetFirstRankedOutgoingEntity() throws Exception {
         String expectedOutgoingEntity = "sbi";
-        List<Trade> rankedTrades = tradeExecutor.getFirstRankedTrade(trades, Indicator.B);
+        List<Trade> rankedTrades = tradeRepository.getFirstRankedTrade(trades, Indicator.B);
         assert (rankedTrades.size() == 3);
         assert (rankedTrades.get(0).getEntity()).equals(expectedOutgoingEntity);
     }

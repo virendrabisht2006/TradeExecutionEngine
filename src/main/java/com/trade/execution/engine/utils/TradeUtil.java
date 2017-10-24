@@ -1,13 +1,14 @@
-package com.virendra.trade.execution.engine.utils;
+package com.trade.execution.engine.utils;
 
-
-import com.virendra.trade.execution.engine.TradeConstant;
 
 import java.util.Calendar;
 import java.util.Date;
 
 public class TradeUtil {
 
+    private TradeUtil() {
+
+    }
 
     public static Date calculateSettlementDate(Date instructionDate, String currency){
         final Calendar calendar = Calendar.getInstance();

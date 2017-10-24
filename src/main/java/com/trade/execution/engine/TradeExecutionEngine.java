@@ -1,9 +1,11 @@
-package com.virendra.trade.execution.engine;
+package com.trade.execution.engine;
 
 
-import com.virendra.trade.execution.engine.model.Indicator;
-import com.virendra.trade.execution.engine.model.Trade;
-import com.virendra.trade.execution.engine.utils.FileReaderUtil;
+import com.trade.execution.engine.model.Indicator;
+import com.trade.execution.engine.model.Trade;
+import com.trade.execution.engine.service.TradeExecutor;
+import com.trade.execution.engine.utils.TradeFileReaderUtil;
+import org.apache.log4j.Logger;
 
 import java.util.Date;
 import java.util.List;
@@ -11,6 +13,8 @@ import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class TradeExecutionEngine {
+
+    private final static Logger logger = Logger.getLogger(TradeExecutionEngine.class);
 
     public static void main(String[] args) throws Exception{
 
@@ -21,9 +25,9 @@ public class TradeExecutionEngine {
         System.out.println("Enter the ',' separated input trade instruction csv file path for execution");
         String file = scanner.nextLine();
 
-        System.out.println("Input file path: "+ file);
+        logger.info("Input file path: " + file);
 
-        List<Trade> trades = FileReaderUtil.readFile(file);
+        List<Trade> trades = TradeFileReaderUtil.readFile(file);
 
         List<Date>  settlementDates = trades.stream().map(trade -> trade.getSettlementDate()).distinct().collect(Collectors.toList());
 
