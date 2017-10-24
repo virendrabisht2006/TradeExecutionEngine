@@ -27,7 +27,7 @@ public class TradeExecutionEngine {
 
         logger.info("Input file path: " + file);
 
-        List<Trade> trades = TradeFileReaderUtil.readFile(file);
+        List<Trade> trades = TradeFileReaderUtil.readTradesFromFile(file);
 
         List<Date>  settlementDates = trades.stream().map(trade -> trade.getSettlementDate()).distinct().collect(Collectors.toList());
 

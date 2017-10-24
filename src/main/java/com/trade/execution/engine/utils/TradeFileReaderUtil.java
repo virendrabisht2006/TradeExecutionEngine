@@ -26,7 +26,7 @@ public class TradeFileReaderUtil {
 
     }
 
-    public static List<Trade> readFile(String path) {
+    public static List<Trade> readTradesFromFile(String path) {
         String file = path;
         List<Trade> trades = new ArrayList<>();
 

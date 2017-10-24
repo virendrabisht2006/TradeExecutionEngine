@@ -18,7 +18,7 @@ public class TradeFileReaderUtilTest {
     @Test
     public void shouldReadFileFromTestResourceIfFilePathNotSpecified(){
 
-        List<Trade> trades = TradeFileReaderUtil.readFile(null);
+        List<Trade> trades = TradeFileReaderUtil.readTradesFromFile(null);
         int expectedSize = 6;
         assertNotNull(trades);
         assert(trades.size() == expectedSize);
@@ -33,7 +33,7 @@ public class TradeFileReaderUtilTest {
             bufferedWriter.write("Entity,Buy/Sell,AgreedFx,Currency,InstructionDate,SettlementDate,Units,Price per unit");
             bufferedWriter.write("\n");
             bufferedWriter.write("foo,B,0.5,SGP,01 Jan 2016,04 Jan 2016,200,100.25");
-            List<Trade> trades = TradeFileReaderUtil.readFile(file.getAbsolutePath());
+            List<Trade> trades = TradeFileReaderUtil.readTradesFromFile(file.getAbsolutePath());
             file.deleteOnExit();
             assertNotNull(trades);
 

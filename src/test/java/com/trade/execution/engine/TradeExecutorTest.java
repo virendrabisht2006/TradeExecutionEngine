@@ -28,7 +28,7 @@ public class TradeExecutorTest {
     @Before
     public void init() {
         tradeRepository = new TradeExecutor();
-        trades = TradeFileReaderUtil.readFile(null);
+        trades = TradeFileReaderUtil.readTradesFromFile(null);
         dateFormat = new SimpleDateFormat(TradeConstant.DATE_FORMAT);
     }
 
