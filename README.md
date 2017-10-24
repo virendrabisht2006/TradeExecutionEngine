@@ -4,7 +4,7 @@ TradeExecutionEngine is the simple application which process the incoming trade 
 
 --Assumption Taken
 1- All instructionDate should be in working day. i.e. from Monday to Friday for all currency except AED and SAR.
-2- Input Instruction list will be in below format and sequence of column
+2- Input Instruction list will be in below format and same sequence of column and will be provided in csv format file. Application will read csv file and produce the required output console.
 
 Entity,Buy/Sell,AgreedFx,Currency,InstructionDate,SettlementDate,Units,Price per unit
 foo,B,0.5,SGP,01 Jan 2016,04 Jan 2016,200,100.25
