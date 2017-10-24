@@ -1,6 +1,8 @@
 # TradeExectionEngine
 
-TradeExecutionEngine is the simple application which process the incoming trade everyday from Monday to Friday.
+Description: TradeExecutionEngine is the simple application which process the incoming trade everyday from Monday to Friday.
+
+Archetectural Decision: Junit4 and log4j is used as external library. Should use maximum feature of java8.
 
 --Assumption Taken
 1- All instructionDate should be in working day. i.e. from Monday to Friday for all currency except AED and SAR.
