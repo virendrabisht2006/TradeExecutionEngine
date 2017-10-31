@@ -7,6 +7,11 @@
     <groupId>com.virendra.test</groupId>
     <artifactId>TradeExecutionEngine</artifactId>
     <version>1.0-SNAPSHOT</version>
+
+    <properties>
+        <ucumber.version>1.2.4</ucumber.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
@@ -19,6 +24,19 @@
             <groupId>log4j</groupId>
             <artifactId>log4j</artifactId>
             <version>1.2.17</version>
+        </dependency>
+
+        <dependency>
+            <groupId>info.cukes</groupId>
+            <artifactId>cucumber-java8</artifactId>
+            <version>1.2.4</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>info.cukes</groupId>
+            <artifactId>cucumber-junit</artifactId>
+            <version>1.2.4</version>
+            <scope>test</scope>
         </dependency>
 
     </dependencies>
