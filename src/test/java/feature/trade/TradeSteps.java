@@ -5,6 +5,7 @@ import com.trade.execution.engine.model.Trade;
 import com.trade.execution.engine.service.TradeExecutor;
 import com.trade.execution.engine.service.TradeRepository;
 import com.trade.execution.engine.utils.TradeConstant;
+import cucumber.api.Format;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
@@ -27,18 +28,10 @@ public class TradeSteps {
     private DateFormat dateFormat = new SimpleDateFormat(TradeConstant.DATE_FORMAT);
 
     @Given("^the incoming instruction for trade initialized with the following data$")
-    public void the_incoming_instruction_for_trade_initialized_with_the_following_data(final List<TradeMapper> tradeMappers) throws Throwable {
-        for (TradeMapper tradeMapper : tradeMappers) {
-            trades.add(new Trade(tradeMapper.getEntity(),
-                    tradeMapper.getIndicator(),
-                    tradeMapper.getAgreedFx(),
-                    tradeMapper.getCurrency(),
-                    dateFormat.parse(tradeMapper.getInstructionDate()),
-                    tradeMapper.getUnits(),
-                    tradeMapper.getPricePerUnit()));
-        }
+    public void the_incoming_instruction_for_trade_initialized_with_the_following_data(@Format("dd MMM yyyy") final List<Trade> trades) throws Throwable {
+        this.trades = trades;
 
-        trades.forEach(trade -> System.out.println(trade));
+        this.trades.forEach(trade -> System.out.println(trade));
 
     }
 
