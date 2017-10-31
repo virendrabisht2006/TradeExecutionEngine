@@ -15,19 +15,16 @@ public class TradeMapper {
 
     private String instructionDate;
 
-    private String settlementDate;
-
     private long units;
 
     private double pricePerUnit;
 
-    public TradeMapper(String entity, Indicator indicator, double agreedFx, String currency, String instructionDate, String settlementDate, long units, double pricePerUnit) {
+    public TradeMapper(String entity, Indicator indicator, double agreedFx, String currency, String instructionDate, long units, double pricePerUnit) {
         this.entity = entity;
         this.indicator = indicator;
         this.agreedFx = agreedFx;
         this.currency = currency;
         this.instructionDate = instructionDate;
-        this.settlementDate = settlementDate;
         this.units = units;
         this.pricePerUnit = pricePerUnit;
     }
@@ -50,10 +47,6 @@ public class TradeMapper {
 
     public String getInstructionDate() {
         return instructionDate;
-    }
-
-    public String getSettlementDate() {
-        return settlementDate;
     }
 
     public long getUnits() {
